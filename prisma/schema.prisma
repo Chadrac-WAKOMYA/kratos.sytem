@@ -1,10 +1,10 @@
-// generator client {
-//   provider = "prisma-client-js"
-//   output   = "../app/generated/prisma"
-// }
+generator client {
+  provider = "prisma-client-js"
+  output   = "../app/generated/prisma"
+}
 
-// datasource db {
-//   provider = "mysql"
-//   url      = env("DATABASE_URL")
-// }
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
 
