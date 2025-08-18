@@ -8,55 +8,55 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model adresse {
+model Adresse {
   id       Int     @id
   ville    String  @db.VarChar(30)
   commune  String  @db.VarChar(30)
   quartier String  @db.VarChar(30)
   avenue   String  @db.VarChar(30)
   numero   Int
-  eleve    eleve[]
+  eleves   Eleve[]
 }
 
-model anneescolaire {
+model AnneeScolaire {
   id                   Int                    @id
   designation          String                 @db.VarChar(30)
-  classeprimaire       classeprimaire[]
-  confirmationprimaire confirmationprimaire[]
-  eleveprimaire        eleveprimaire[]
-  inscriptionprimaire  inscriptionprimaire[]
-  miseenplaceprimaire  miseenplaceprimaire[]
-  recouvrementprimaire recouvrementprimaire[]
+  classePrimaires       ClassePrimaire[]
+  confirmationPrimaires ConfirmationPrimaire[]
+  elevePrimaires        ElevePrimaire[]
+  inscriptionPrimaires  InscriptionPrimaire[]
+  miseEnPlacePrimaires  MiseEnPlacePrimaire[]
+  recouvrementPrimaires  RecouvrementPrimaire[]
 }
 
-model classeprimaire {
+model ClassePrimaire {
   id                  Int                   @id
   classe              String                @db.VarChar(10)
   anneeScolaireId     Int
-  anneescolaire       anneescolaire         @relation(fields: [anneeScolaireId], references: [id], onUpdate: Restrict, map: "ClasseP_AnneeS_id")
-  eleveprimaire       eleveprimaire[]
-  miseenplaceprimaire miseenplaceprimaire[]
+  anneeScolaire       AnneeScolaire         @relation(fields: [anneeScolaireId], references: [id], onUpdate: Restrict, map: "ClasseP_AnneeS_id")
+  elevePrimaires       ElevePrimaire[]
+  miseEnplacePrimaires MiseEnPlacePrimaire[]
 
   @@index([anneeScolaireId], map: "ClasseP_AnneeS_id")
 }
 
-model confirmationprimaire {
+model ConfirmationPrimaire {
   id              Int           @id
   classe          String        @db.VarChar(10)
   date            DateTime      @db.DateTime(0)
   personnelId     Int
   elevePrimaireId Int
   anneeScolaireId Int
-  anneescolaire   anneescolaire @relation(fields: [anneeScolaireId], references: [id], onUpdate: Restrict, map: "ConfirmationP_AnneeScolaire_id")
-  eleveprimaire   eleveprimaire @relation(fields: [elevePrimaireId], references: [id], onUpdate: Restrict, map: "ConfirmationP_ElevePrimaire_id")
-  personnel       personnel     @relation(fields: [personnelId], references: [id], onUpdate: Restrict, map: "ConfirmationP_Personnel_id")
+  anneeScolaire   AnneeScolaire @relation(fields: [anneeScolaireId], references: [id], onUpdate: Restrict, map: "ConfirmationP_AnneeScolaire_id")
+  elevePrimaire   ElevePrimaire @relation(fields: [elevePrimaireId], references: [id], onUpdate: Restrict, map: "ConfirmationP_ElevePrimaire_id")
+  personnel       Personnel     @relation(fields: [personnelId], references: [id], onUpdate: Restrict, map: "ConfirmationP_Personnel_id")
 
   @@index([personnelId], map: "ConfirmationP_Personnel_id")
   @@index([anneeScolaireId], map: "ConfirmationP_AnneeS_id")
   @@index([elevePrimaireId], map: "ConfirmationP_EleveP_id")
 }
 
-model eleve {
+model Eleve {
   id                          Int                   @id
   nom                         String                @db.VarChar(30)
   postnom                     String                @db.VarChar(30)
@@ -65,45 +65,45 @@ model eleve {
   matricule                   String                @db.VarChar(30)
   dateNaissance               DateTime              @db.Date
   nationalite                 String                @db.VarChar(30)
-  langueEnseognementProposees String                @db.VarChar(90)
+  langueEnseignementProposees String                @db.VarChar(90)
   moyenTransport              String                @db.VarChar(30)
   langueFamille               String                @db.VarChar(30)
   nbreEnfantToitPaternel      Int
   personneRetireEnfant        String                @db.VarChar(60)
   adresseId                   Int
   parentId                    Int
-  adresse                     adresse               @relation(fields: [adresseId], references: [id], onUpdate: Restrict, map: "Eleve_adresseId_Adresse_id")
-  parent                      parent                @relation(fields: [parentId], references: [id], onUpdate: Restrict, map: "Eleve_parentId_Parent_id")
-  eleveprimaire               eleveprimaire[]
-  inscriptionprimaire         inscriptionprimaire[]
+  adresse                     Adresse               @relation(fields: [adresseId], references: [id], onUpdate: Restrict, map: "Eleve_adresseId_Adresse_id")
+  parent                      Parent                @relation(fields: [parentId], references: [id], onUpdate: Restrict, map: "Eleve_parentId_Parent_id")
+  elevePrimaires              ElevePrimaire[]
+  inscriptionPrimaires        InscriptionPrimaire[]
 
   @@index([adresseId], map: "Eleve_Adresse_id")
   @@index([parentId], map: "Eleve_Parent_id")
 }
 
-model eleveprimaire {
+model ElevePrimaire {
   id                          Int                           @id
   eleveId                     Int
   classePrimaireId            Int
   anneScolaireId              Int
-  confirmationprimaire        confirmationprimaire[]
-  anneescolaire               anneescolaire                 @relation(fields: [anneScolaireId], references: [id], onUpdate: Restrict, map: "EleveP_AnneeS_id")
-  classeprimaire              classeprimaire                @relation(fields: [classePrimaireId], references: [id], onUpdate: Restrict, map: "EleveP_ClasseP_id")
-  eleve                       eleve                         @relation(fields: [eleveId], references: [id], onUpdate: Restrict, map: "ElevePrimaire_eleveId_Eleve_id")
-  recouvrementprimairedetails recouvrementprimairedetails[]
+  confirmationPrimaires        ConfirmationPrimaire[]
+  anneeScolaire               AnneeScolaire                 @relation(fields: [anneScolaireId], references: [id], onUpdate: Restrict, map: "EleveP_AnneeS_id")
+  classePrimaire              ClassePrimaire                @relation(fields: [classePrimaireId], references: [id], onUpdate: Restrict, map: "EleveP_ClasseP_id")
+  eleve                       Eleve                         @relation(fields: [eleveId], references: [id], onUpdate: Restrict, map: "ElevePrimaire_eleveId_Eleve_id")
+  recouvrementPrimaireDetails RecouvrementPrimaireDetails[]
 
   @@index([anneScolaireId], map: "EleveP_AnneeS_id")
   @@index([classePrimaireId], map: "EleveP_ClasseP_id")
   @@index([eleveId], map: "EleveP_Eleve_id")
 }
 
-model fonction {
+model Fonction {
   id          Int         @id
   designation String      @db.VarChar(30)
-  personnel   personnel[]
+  personnels   Personnel[]
 }
 
-model inscriptionprimaire {
+model InscriptionPrimaire {
   id                  Int           @id
   monteDansLaClasseDe String        @db.VarChar(10)
   ecoleDeProvenance   String        @db.VarChar(30)
@@ -113,36 +113,36 @@ model inscriptionprimaire {
   eleveId             Int
   personnelId         Int
   anneeScolaireId     Int
-  anneescolaire       anneescolaire @relation(fields: [anneeScolaireId], references: [id], onUpdate: Restrict, map: "InscriptionP_AnneeScolaire_id")
-  eleve               eleve         @relation(fields: [eleveId], references: [id], onUpdate: Restrict, map: "InscriptionP_Eleve_id")
-  personnel           personnel     @relation(fields: [personnelId], references: [id], onUpdate: Restrict, map: "InscriptionP_Personnel_id")
+  anneeScolaire       AnneeScolaire @relation(fields: [anneeScolaireId], references: [id], onUpdate: Restrict, map: "InscriptionP_AnneeScolaire_id")
+  eleve               Eleve         @relation(fields: [eleveId], references: [id], onUpdate: Restrict, map: "InscriptionP_Eleve_id")
+  personnel           Personnel     @relation(fields: [personnelId], references: [id], onUpdate: Restrict, map: "InscriptionP_Personnel_id")
 
   @@index([anneeScolaireId], map: "InscriptionP_AnneeScolaire_id")
   @@index([eleveId], map: "InscriptionP_Eleve_id")
   @@index([personnelId], map: "InscriptionP_Personnel_id")
 }
 
-model miseenplaceprimaire {
+model MiseEnPlacePrimaire {
   id                  Int               @id
   personnelPrimaireId Int
   anneeScolaireId     Int
   classePrimaireId    Int
-  anneescolaire       anneescolaire     @relation(fields: [anneeScolaireId], references: [id], onUpdate: Restrict, map: "MiseEnPlaceP_AnneeScolaire_id")
-  classeprimaire      classeprimaire    @relation(fields: [classePrimaireId], references: [id], onUpdate: Restrict, map: "MiseEnPlaceP_ClassePrimaire_id")
-  personnelprimaire   personnelprimaire @relation(fields: [personnelPrimaireId], references: [id], onUpdate: Restrict, map: "MiseEnPlaceP_PersonnelPrimaire_id")
+  anneeScolaire       AnneeScolaire     @relation(fields: [anneeScolaireId], references: [id], onUpdate: Restrict, map: "MiseEnPlaceP_AnneeScolaire_id")
+  classePrimaire      ClassePrimaire    @relation(fields: [classePrimaireId], references: [id], onUpdate: Restrict, map: "MiseEnPlaceP_ClassePrimaire_id")
+  personnelPrimaire   PersonnelPrimaire @relation(fields: [personnelPrimaireId], references: [id], onUpdate: Restrict, map: "MiseEnPlaceP_PersonnelPrimaire_id")
 
   @@index([anneeScolaireId], map: "MiseEnPlaceP_AnneeS_id")
   @@index([classePrimaireId], map: "MiseEnPlaceP_ClasseP_id")
   @@index([personnelPrimaireId], map: "MiseEnPlaceP_PersonnelP_id")
 }
 
-model objetrecouvrement {
+model ObjetRecouvrement {
   id                   Int                    @id
   designation          String                 @db.VarChar(40)
-  recouvrementprimaire recouvrementprimaire[]
+  recouvrementPrimaires RecouvrementPrimaire[]
 }
 
-model parent {
+model Parent {
   id             Int     @id
   pere           String  @db.VarChar(60)
   mere           String  @db.VarChar(60)
@@ -150,18 +150,17 @@ model parent {
   professionMere String  @db.VarChar(30)
   telephonePere  String  @db.VarChar(15)
   telephoneMere  String  @db.VarChar(15)
-  column_8       Int
-  eleve          eleve[]
+  eleves          Eleve[]
 }
 
-model permission {
+model Permission {
   id          Int         @id
   code        String      @db.VarChar(30)
   description String      @db.VarChar(30)
-  personnel   personnel[]
+  personnels   Personnel[]
 }
 
-model personnel {
+model Personnel {
   id                   Int                    @id
   nom                  String                 @db.VarChar(30)
   postnom              String                 @db.VarChar(30)
@@ -171,44 +170,44 @@ model personnel {
   actif                Boolean
   fonctionId           Int
   permissionId         Int
-  confirmationprimaire confirmationprimaire[]
-  inscriptionprimaire  inscriptionprimaire[]
-  fonction             fonction               @relation(fields: [fonctionId], references: [id], onUpdate: Restrict, map: "Personnel_Fonction_id")
-  permission           permission             @relation(fields: [permissionId], references: [id], onUpdate: Restrict, map: "Personnel_Permission_id")
-  personnelprimaire    personnelprimaire[]
+  confirmationPrimaire ConfirmationPrimaire[]
+  inscriptionPrimaires  InscriptionPrimaire[]
+  fonction             Fonction               @relation(fields: [fonctionId], references: [id], onUpdate: Restrict, map: "Personnel_Fonction_id")
+  permission           Permission             @relation(fields: [permissionId], references: [id], onUpdate: Restrict, map: "Personnel_Permission_id")
+  personnelPrimaires    PersonnelPrimaire[]
 
   @@index([fonctionId], map: "Personnel_Fonction_id")
   @@index([permissionId], map: "Personnel_Permission_id")
 }
 
-model personnelprimaire {
+model PersonnelPrimaire {
   id                  Int                   @id
   personnelId         Int
-  miseenplaceprimaire miseenplaceprimaire[]
-  personnel           personnel             @relation(fields: [personnelId], references: [id], onUpdate: Restrict, map: "PersonnelP_Personnel_id")
+  miseenplaceprimaire MiseEnPlacePrimaire[]
+  personnel           Personnel             @relation(fields: [personnelId], references: [id], onUpdate: Restrict, map: "PersonnelP_Personnel_id")
 
   @@index([personnelId], map: "PersonnelP_Personnel_id")
 }
 
-model recouvrementprimaire {
+model RecouvrementPrimaire {
   id                          Int                           @id
   date                        DateTime                      @db.Date
   objetRId                    Int
   anneeScolaireId             Int
-  anneescolaire               anneescolaire                 @relation(fields: [anneeScolaireId], references: [id], onUpdate: Restrict, map: "RecouvrementP_AnneeS_id")
-  objetrecouvrement           objetrecouvrement             @relation(fields: [objetRId], references: [id], onUpdate: Restrict, map: "RecouvrementP_objetRId_ObjetRecouvrement_id")
-  recouvrementprimairedetails recouvrementprimairedetails[]
+  anneescolaire               AnneeScolaire                 @relation(fields: [anneeScolaireId], references: [id], onUpdate: Restrict, map: "RecouvrementP_AnneeS_id")
+  objetRecouvrement           ObjetRecouvrement             @relation(fields: [objetRId], references: [id], onUpdate: Restrict, map: "RecouvrementP_objetRId_ObjetRecouvrement_id")
+  recouvrementPrimaireDetails RecouvrementPrimaireDetails[]
 
   @@index([anneeScolaireId], map: "RecouvrementP_AnneeS_id")
   @@index([objetRId], map: "RecouvrementP_objetRId_ObjetRecouvrement_id")
 }
 
-model recouvrementprimairedetails {
+model RecouvrementPrimaireDetails {
   id                     Int                  @id
   recouvrementPrimaireId Int
   elevePrimaireId        Int
-  eleveprimaire          eleveprimaire        @relation(fields: [elevePrimaireId], references: [id], onUpdate: Restrict, map: "RecouvrementP_ElevePrimaire_id")
-  recouvrementprimaire   recouvrementprimaire @relation(fields: [recouvrementPrimaireId], references: [id], onUpdate: Restrict, map: "RecouvrementP_RecouvrementPrimaire_id")
+  elevePrimaire          ElevePrimaire        @relation(fields: [elevePrimaireId], references: [id], onUpdate: Restrict, map: "RecouvrementP_ElevePrimaire_id")
+  recouvrementPrimaire   RecouvrementPrimaire @relation(fields: [recouvrementPrimaireId], references: [id], onUpdate: Restrict, map: "RecouvrementP_RecouvrementPrimaire_id")
 
   @@index([elevePrimaireId], map: "RecouvrementPDetails_EleveP_id")
   @@index([recouvrementPrimaireId], map: "RecouvrementPDetails_RecouvrementP_id")
