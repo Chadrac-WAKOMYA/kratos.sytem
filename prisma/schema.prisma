@@ -186,7 +186,7 @@ model PersonnelPrimaire {
   miseenplaceprimaire MiseEnPlacePrimaire[]
   personnel           Personnel             @relation(fields: [personnelId], references: [id], onUpdate: Restrict, map: "PersonnelP_Personnel_id")
 
-  @@index([personnelId], map: "PersonnelP_Personnel_id")
+//   @@index([personnelId], map: "PersonnelP_Personnel_id")
 }
 
 model RecouvrementPrimaire {
