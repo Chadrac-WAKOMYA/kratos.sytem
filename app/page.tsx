@@ -1,11 +1,17 @@
+import Link from "next/link";
+import LogoSystemV from "./component/LogoSystemV";
+
 export default function Home() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg">
-        <h1 className="text-2xl font-bold mb-4">Bienvenu dans Kratos <span>.System</span></h1>
-        <div className="flex flex-col gap-4">
-          <button className="btn btn-accent">Se connecter</button>
-          <button className="btn">Créer Mon compte</button>
+        <LogoSystemV />
+        <h1 className="mt-6">Bienvenu dans le sytème du complexe scolaire Kratos </h1>
+        <h2 className="mb-2">Un système adapté aux besoins scolaires </h2>
+        <h1 className="mb-2">Efficace et intuitif </h1>
+        <div className="flex gap-4 mt-6">
+          <Link className="btn btn-sm btn-accent " href={"./primaire"}>Se connecter</Link>
+          <button className="btn btn-sm">Créer Mon compte</button>
         </div>
       </div>
     </div>
