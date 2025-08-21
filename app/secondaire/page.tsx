@@ -5,8 +5,8 @@ type Props = {}
 
 export default function page({}: Props) {
   return (
-    <Wrapper>
-      <div className='flex items-center justify-center min-h-screen'>page</div>
-    </Wrapper>
-  )
+      <Wrapper>
+        <div className='flex items-center justify-center min-h-screen'>Secondaire</div>
+      </Wrapper>
+    )
 }
