@@ -3,21 +3,15 @@ import React from 'react'
 
 type Props = {}
 
-export default function page({}: Props) {
+export default function page({ }: Props) {
   return (
     <Wrapper>
-      <div className='flex items-center justify-center min-h-screen'>page</div>
-      <div className='flex justify-between'>
-        <h1>Primaire</h1>
-        <div className='flex'>
-          <p> Année Scolaire : </p>
-          <select name="" id="">
-            <option value=""></option>
-          </select>
-        </div>
-        
+      <div>
+        <div className='flex flex-row justify-between'></div>
+          <div>Gauche</div>
+          <div>Droite</div>
+        <div></div>
       </div>
-      <div></div>
     </Wrapper>
   )
 }
