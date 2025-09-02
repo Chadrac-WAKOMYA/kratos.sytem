@@ -10,7 +10,7 @@ export default function page({ }: Props) {
         <div className='flex flex-row justify-between'></div>
           {/* <div>Gauche</div>
           <div>Droite</div> */}
-        <div></div>
+        {/* <div></div> */}
       </div>
     </Wrapper>
   )
