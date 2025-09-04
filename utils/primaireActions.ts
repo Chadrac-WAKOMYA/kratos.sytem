@@ -8,6 +8,6 @@ export async function getAnneeScolaires() {
         
         return anneeScolaires;
     } catch (error) {
-        console.error("Error fetching AnneeScolaire", error);
+        // console.error("Error fetching AnneeScolaire", error);
     }
 }
