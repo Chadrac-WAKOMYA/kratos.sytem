@@ -6,7 +6,7 @@ export async function getAnneeScolaires() {
             // throw new Error("Annees Scolaires non trouvées");
         }
         
-        return anneeScolaires;
+        // return anneeScolaires;
     } catch (error) {
         // console.error("Error fetching AnneeScolaire", error);
     }
