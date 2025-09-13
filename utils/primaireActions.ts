@@ -3,7 +3,7 @@ export async function getAnneeScolaires() {
     try {
         const anneeScolaires = await connectionDB.AnneeScolaire.findMany();
         if (!anneeScolaires) {
-            throw new Error("Annees Scolaires non trouvées");
+            // throw new Error("Annees Scolaires non trouvées");
         }
         
         return anneeScolaires
