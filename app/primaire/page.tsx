@@ -8,7 +8,7 @@ export default function page({ }: Props) {
     <Wrapper>
       <div>
         <div className='flex justify-between'>
-          <div>Gauche</div>
+          <div ><span className='text-2xl'>Pimaire</span></div>
           <div>Droite</div>
         </div>
       </div>
