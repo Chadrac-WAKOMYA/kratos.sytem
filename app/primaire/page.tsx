@@ -19,7 +19,7 @@ export default function page({ }: Props) {
               <option value="">Sélectionnez...</option>
               {/* <option value="option1">2025 - 2026</option> */}
               <option value="option2">2024 - 2025</option>
-              <option value="option3">2023 - 2024</option>
+              {/* <option value="option3">2023 - 2024</option> */}
             </select>
           </div>
         </div>
