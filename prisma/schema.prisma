@@ -210,5 +210,5 @@ model RecouvrementPrimaireDetails {
   recouvrementPrimaire   RecouvrementPrimaire @relation(fields: [recouvrementPrimaireId], references: [id], onUpdate: Restrict, map: "RecouvrementP_RecouvrementPrimaire_id")
 
   @@index([elevePrimaireId], map: "RecouvrementPDetails_EleveP_id")
-  @@index([recouvrementPrimaireId], map: "RecouvrementPDetails_RecouvrementP_id")
+  // @@index([recouvrementPrimaireId], map: "RecouvrementPDetails_RecouvrementP_id")
 }
