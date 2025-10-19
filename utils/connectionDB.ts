@@ -8,7 +8,7 @@ declare const globalThis: {
   prismaGlobal: ReturnType<typeof prismaClientSingleton>;
 } & typeof global;
 
-const connectionDB = globalThis.prismaGlobal ?? prismaClientSingleton()
+// const connectionDB = globalThis.prismaGlobal ?? prismaClientSingleton()
 
 export default connectionDB
 
