@@ -8,15 +8,15 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Adresse {
-  id       Int     @id
-  ville    String  @db.VarChar(30)
-  commune  String  @db.VarChar(30)
-  quartier String  @db.VarChar(30)
-  avenue   String  @db.VarChar(30)
-  numero   Int
-  eleves   Eleve[]
-}
+// model Adresse {
+//   id       Int     @id
+//   ville    String  @db.VarChar(30)
+//   commune  String  @db.VarChar(30)
+//   quartier String  @db.VarChar(30)
+//   avenue   String  @db.VarChar(30)
+//   numero   Int
+//   eleves   Eleve[]
+// }
 
 model AnneeScolaire {
   id                   Int                    @id
