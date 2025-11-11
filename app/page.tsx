@@ -4,7 +4,7 @@ import LogoSystemV from "../component/LogoSystemV";
 export default function Home() {
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg">
+      {/* <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-lg"> */}
         <LogoSystemV />
         <h1 className="mt-6">Bienvenu dans le sytème du complexe scolaire Kratos </h1>
         <h2 className="mb-2">Un système adapté aux besoins scolaires </h2>
