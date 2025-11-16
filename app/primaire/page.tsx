@@ -8,7 +8,7 @@ export default function page({ }: Props) {
     <Wrapper>
       <div>
         <div className='flex justify-end '>
-          <div className='flex items-center'>
+          {/* <div className='flex items-center'> */}
             <label htmlFor="options" className="text-gray-700 mr-2">
               Année Scolaire :
             </label>
