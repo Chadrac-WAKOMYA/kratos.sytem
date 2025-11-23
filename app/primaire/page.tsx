@@ -6,6 +6,7 @@ export default function page({ }: Props) {
   return (
     <Wrapper>
       <div>
+        <div>test</div>
         <div className='flex justify-end '>
           <div className='flex items-center'>
             <label htmlFor="options" className="text-gray-700 mr-2">
