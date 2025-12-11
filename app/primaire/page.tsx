@@ -6,11 +6,11 @@ export default function page({ }: Props) {
   return (
     <Wrapper>
       <div>
-        {/* <div>test</div> */}
-        {/* <div className='flex justify-end '> */}
-          {/* <div className='flex items-center'> */}
+        <div>test</div>
+        <div className='flex justify-end '>
+          <div className='flex items-center'>
             <label htmlFor="options" className="text-gray-700 mr-2">
-              {/* <label htmlFor="options" className="text-gray-700 mr-2"></label> */}
+              <label htmlFor="options" className="text-gray-700 mr-2"></label>
               Année Scolaire :
             </label>
             <select
